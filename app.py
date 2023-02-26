@@ -16,7 +16,7 @@ with st.form("my_form"):
     st.write(sys.path)
     files = glob.glob("./*")
     for file in files:
-        print(file)
+        st.write(file)
     st.write("初期企画準備ファイル　用意フォーム")
 
     request_date = st.date_input(

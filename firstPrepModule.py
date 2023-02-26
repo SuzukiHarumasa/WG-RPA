@@ -1,6 +1,12 @@
 import sys
 sys.path.append('./env/lib/python3.10/site-packages')
-sys.path.append('./')
+sys.path.append('/pytools')
+
+import glob
+files = glob.glob("./*")
+for file in files:
+    print(file)
+print(sys.path)
 import requests
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup

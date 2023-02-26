@@ -1,5 +1,6 @@
 import sys
 sys.path.append('./env/lib/python3.10/site-packages')
+sys.path.append('./')
 import requests
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup

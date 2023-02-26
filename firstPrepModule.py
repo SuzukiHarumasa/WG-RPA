@@ -1,12 +1,12 @@
 import sys
 sys.path.append('./env/lib/python3.10/site-packages')
-sys.path.append('/app/wg-rpa/pytools')
+sys.path.append('./pytools')
 import requests
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import urllib3
 import pandas as pd
-from .pytools.gsheets import GSheets
+from gsheets import GSheets
 
 # 検索上位取得
 

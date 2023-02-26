@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import urllib3
 import pandas as pd
-from pytools.gsheets import GSheets
+from .pytools.gsheets import GSheets
 
 # 検索上位取得
 

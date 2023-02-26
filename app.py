@@ -1,22 +1,22 @@
 import streamlit as st
 import datetime
 import sys
-# sys.path.append('./env/lib/python3.10/site-packages')
-# sys.path.append('./pytools')
+sys.path.append('./env/lib/python3.10/site-packages')
+sys.path.append('./pytools/')
 
 import glob
 
 
-# from firstPrepModule import firstPrepFunc
+from firstPrepModule import firstPrepFunc
 
 input_fields = ['日時', 'メールアドレス', '対策サイト', '対策サイト_サイト名', '対策サイト（ドメイン抽出）', '取引先webサイト', 'メインキーワード', '指定競合サイト×3社以上', '初期企画依頼日', '競合①_URL', '競合①_サイト名', '競合②_URL', '競合②_サイト名', '競合③_URL', '競合③_サイト名', '競合④_URL',
                 '競合④_サイト名', '競合⑤_URL', '競合⑤_サイト名', '競合⑥_URL', '競合⑥_サイト名', '最重要キーワード', '上位表示分析結果URL', '自社及び競合サイトのディレクトリ構造', 'GAのアカウントID', 'GAのビューID', 'カテゴリ系競合（最大8つまで）※除外するディレクトリがある場合には『,』を記載してください', '記事系競合（最大8つまで）']
 
 with st.form("my_form"):
-    st.write(sys.path)
-    files = glob.glob("./*")
-    for file in files:
-        st.write(file)
+    # st.write(sys.path)
+    # files = glob.glob("./*")
+    # for file in files:
+    #     st.write(file)
     st.write("初期企画準備ファイル　用意フォーム")
 
     request_date = st.date_input(

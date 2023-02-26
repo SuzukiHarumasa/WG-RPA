@@ -1,8 +1,11 @@
 import streamlit as st
 import datetime
 import sys
-sys.path.append('./env/lib/python3.10/site-packages')
-sys.path.append('./pytools')
+# sys.path.append('./env/lib/python3.10/site-packages')
+# sys.path.append('./pytools')
+
+import glob
+
 
 # from firstPrepModule import firstPrepFunc
 
@@ -11,6 +14,9 @@ input_fields = ['日時', 'メールアドレス', '対策サイト', '対策サ
 
 with st.form("my_form"):
     st.write(sys.path)
+    files = glob.glob("./*")
+    for file in files:
+        print(file)
     st.write("初期企画準備ファイル　用意フォーム")
 
     request_date = st.date_input(

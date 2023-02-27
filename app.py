@@ -50,8 +50,8 @@ with st.form("my_form"):
     ga_id = st.text_input('GAのアカウントID','t3dwillgate@gmail.com')
     ga_view = st.text_input('GAのビューID','52781251')
     comp_category = st.text_area(
-        'カテゴリ系競合（最大8つまで）※除外するディレクトリがある場合には『,』を記載してください','https://www.wifi-rental.com/,media')
-    comp_article = st.text_area('記事系競合（最大8つまで）','https://www.wifi-rental.com/media/')
+        'カテゴリ系競合（最大8つまで）※除外するディレクトリがある場合には『,』を記載してください','https://www.wifi-rental.com/,media\nhttps://www.wifi-rental.com/,media\nhttps://www.netage.ne.jp/,column\nhttps://wifistore.jp/,column\nhttps://www.rental-store.jp/\nhttps://wifi-rent.jp/')
+    comp_article = st.text_area('記事系競合（最大8つまで）','https://www.wifi-rental.com/media/\nhttps://www.wifi-rental.com/media/\nhttps://wimax-broad.jp/column/\nhttps://www.just-size.net/internet/\nhttps://shibarinashi-wifi.jp/media/\nhttps://www.mobistar.jp/\nhttps://wimax比較.com/')
 
     data_list = [request_date, email, mysite, mysite_name, mysite_dmain, website, main_keyword, name, first_request_date, comp1, comp1_name, comp2, comp2_name,
                  comp3, comp3_name, comp4, comp4_name, comp5, comp5_name, comp6, comp6_name, imp_keyword, tact_url, dict_stracture, ga_id, ga_view, comp_category, comp_article]

@@ -10,7 +10,7 @@ import glob
 from firstPrepModule import firstPrepFunc
 
 input_fields = ['日時', 'メールアドレス', '対策サイト', '対策サイト_サイト名', '対策サイト（ドメイン抽出）', '取引先webサイト', 'メインキーワード', '指定競合サイト×3社以上', '初期企画依頼日', '競合①_URL', '競合①_サイト名', '競合②_URL', '競合②_サイト名', '競合③_URL', '競合③_サイト名', '競合④_URL',
-                '競合④_サイト名', '競合⑤_URL', '競合⑤_サイト名', '競合⑥_URL', '競合⑥_サイト名', '最重要キーワード', '上位表示分析結果URL', '自社及び競合サイトのディレクトリ構造', 'GAのアカウントID', 'GAのビューID', 'カテゴリ系競合（最大8つまで）※除外するディレクトリがある場合には『,』を記載してください', '記事系競合（最大8つまで）']
+                '競合④_サイト名', '競合⑤_URL', '競合⑤_サイト名', '競合⑥_URL', '競合⑥_サイト名', '最重要キーワード', '上位表示分析結果URL', '自社及び競合サイトのディレクトリ構造', 'GAのアカウントID', 'GAのビューID', 'カテゴリ系競合（最大8つまで）※除外するディレクトリがある場合には『,』を記載してください', "ahrefsのパスのかけ方(カテゴリ系競合)",'記事系競合（最大8つまで）',"ahrefsのパスのかけ方(記事系競合)"]
 
 with st.form("my_form"):
     # st.write(sys.path)
@@ -51,10 +51,12 @@ with st.form("my_form"):
     ga_view = st.text_input('GAのビューID','52781251')
     comp_category = st.text_area(
         'カテゴリ系競合（最大8つまで）※除外するディレクトリがある場合には『,』を記載してください','https://www.wifi-rental.com/,media\nhttps://www.wifi-rental.com/,media\nhttps://www.netage.ne.jp/,column\nhttps://wifistore.jp/,column\nhttps://www.rental-store.jp/\nhttps://wifi-rent.jp/')
+    comp_category_ahrefs = st.selectbox("ahrefsのパスのかけ方(カテゴリ系競合)",("URL完全一致","部分一致","ドメイン","サブドメイン含む"))
     comp_article = st.text_area('記事系競合（最大8つまで）','https://www.wifi-rental.com/media/\nhttps://www.wifi-rental.com/media/\nhttps://wimax-broad.jp/column/\nhttps://www.just-size.net/internet/\nhttps://shibarinashi-wifi.jp/media/\nhttps://www.mobistar.jp/\nhttps://wimax比較.com/')
+    comp_article_ahrefs = st.selectbox("ahrefsのパスのかけ方(記事系競合)",("URL完全一致","部分一致","ドメイン","サブドメイン含む"))
 
     data_list = [request_date, email, mysite, mysite_name, mysite_dmain, website, main_keyword, name, first_request_date, comp1, comp1_name, comp2, comp2_name,
-                 comp3, comp3_name, comp4, comp4_name, comp5, comp5_name, comp6, comp6_name, imp_keyword, tact_url, dict_stracture, ga_id, ga_view, comp_category, comp_article]
+                 comp3, comp3_name, comp4, comp4_name, comp5, comp5_name, comp6, comp6_name, imp_keyword, tact_url, dict_stracture, ga_id, ga_view, comp_category,comp_category_ahrefs, comp_article,comp_article_ahrefs]
     # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
 
@@ -84,14 +86,3 @@ with st.form("my_form"):
                 st.write("キーワードシート :sunglasses:")
                 st.write(keyword_url)
 
-
-# form = st.form("my_form")
-# form.text_input('メールアドレス')
-# form.text_input('対策サイト')
-# form.text_input('対策サイト_サイト名')
-# form.text_input('対策サイト（ドメイン抽出）')
-# form.text_input('取引先webサイト')
-
-# form.form_submit_button("Submit")
-
-# st.write(form)

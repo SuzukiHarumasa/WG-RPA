@@ -149,7 +149,8 @@ class GSheets:
             emails = [emails]
 
         for email in emails:
-            sheets.share(email, perm_type='user', role='writer')
+            sheets.share(email, perm_type='user', role='owner')
+            # sheets.share(perm_type='user', role='owner')
 
     def open(self, url: Optional[str] = None) -> None:
         "Opens a Google Sheets url."

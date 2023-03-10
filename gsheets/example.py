@@ -17,7 +17,7 @@ df = pd.DataFrame({'name': ['John', 'Bob', 'Marry'],
 # フォルダを指定しなければ、デフォルトで Rebase Inc. Team の共有フォルダに保存。
 # https://drive.google.com/drive/folders/0BxpY8IQbguQWa3V5blloRWFjMzA
 sheets = gs.save_df(df, title='Sample title')
-gs.share(sheets, ["alex.ishida@rebase.co.jp"])
+gs.share(sheets, ["suzuki.harumasa@willgate.co.jp"])
 
 print(f"Saved results to: {sheets.url}.")
 

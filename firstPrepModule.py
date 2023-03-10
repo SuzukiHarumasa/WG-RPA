@@ -19,15 +19,6 @@ def firstPrepFunc(all_input_dict):
 
     gs = GSheets(creds)
 
-    # 必要な情報を取得する
-    input_id = '1hQikhwgt8VSNC6GcfhFhHqQPAfoLygBJrK0cG_Ja3xc'
-    sheets = gs.gc.open_by_key(input_id)
-
-    sheet = sheets.worksheet('input')
-    content = sheet.get_values()
-
-    sheet = sheets.worksheet('input')
-    content = sheet.get_values()
     # シートの中身をデータフレーム化
 
     # 必要なファイルの作成
@@ -130,8 +121,9 @@ def firstPrepFunc(all_input_dict):
     first_prep_id = first_prep_new_file['id']
 
     first_prep_sheets = gs.gc.open_by_key(first_prep_id)
-
+    # gs.share(first_prep_sheets, ["suzuki.harumasa@willgate.co.jp"])
     first_prep_sheet = first_prep_sheets.worksheet('【※はじめに確認※】調査概要')
+    
     first_prep_content = first_prep_sheet.get_values()
     first_prep_field = ['対策サイト', '取引先webサイト',
                         'メインキーワード', '指定競合サイト×3社以上', '初期企画依頼日']
@@ -156,7 +148,7 @@ def firstPrepFunc(all_input_dict):
 
     keyword_sheet = keyword_sheets.worksheet('【※はじめに確認※】調査概要')
     keyword_content = keyword_sheet.get_values()
-    first_prep_url = f'https://docs.google.com/spreadsheets/d/{first_prep_id}'
+    first_prep_url = f'https://docs.google.com/spreadsheets/d/{first_prep_id}/edit'
 
     keyword_sheet.update_acell('D2', first_prep_url)
 
@@ -173,7 +165,10 @@ def firstPrepFunc(all_input_dict):
     service_comps = []
     service_comps = all_input_dict["カテゴリ系競合（最大8つまで）※除外するディレクトリがある場合には『,』を記載してください"].splitlines(
     )
-    service_comps
+
+    comp_category_ahrefs = all_input_dict["ahrefsのパスのかけ方(カテゴリ系競合)"]
+    comp_article_ahrefs= all_input_dict["ahrefsのパスのかけ方(記事系競合)"]
+
 
     dicts = {}
     http = urllib3.PoolManager()
@@ -229,6 +224,9 @@ def firstPrepFunc(all_input_dict):
 
     first_prep_sheet.update_cells(ds)
 
+    first_prep_sheet.update_acell("C7", comp_category_ahrefs)
+    first_prep_sheet.update_acell("I7", comp_article_ahrefs)
+
     search_word = all_input_dict['メインキーワード']
 
     pages_num = 25 + 1
@@ -273,5 +271,21 @@ def firstPrepFunc(all_input_dict):
         ds[i].value = domain_list[i]
 
     first_prep_sheet.update_cells(ds)
+
+    # 格納先にシートの一覧を記載
+    data_id = '1FUuPtV56It-vPLW3DL8EwBwxR0urMeerl5rvuE7ofJM'
+    data_sheets = gs.gc.open_by_key(data_id)
+
+    sheet = data_sheets.worksheet('格納先一覧')
+    content = sheet.get_values()
+    df = pd.DataFrame({'取引先webサイト': [all_input_dict['取引先webサイト']],
+                       '担当者': [all_input_dict['メールアドレス']],
+                       '初期企画準備ファイル': [first_prep_url],
+                       'キーワード調査テンプレ': [keyword_url],
+                       'SEO課題分析調査': [seo_url]})
+
+
+    gs.concat(df, sheet)
+
 
     return first_prep_url, keyword_url, seo_url
